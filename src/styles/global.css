@@ -1,0 +1,115 @@
+:root {
+  /* Brand boje (izvučene iz logotipa) */
+  --et-gold: #FFB92A;
+  --et-gold-dark: #E6A211;
+  --et-ink: #101921;
+  --et-ink-soft: #2A3540;
+  --et-white: #FFFFFF;
+  --et-offwhite: #F7F8FA;
+  --et-gray: #5C6670;
+  --et-border: #E2E5EA;
+
+  /* Tipografija */
+  --font-heading: 'Bitter', Georgia, serif;
+  --font-body: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+
+  /* Razmaci */
+  --space-section: clamp(3.5rem, 8vw, 7rem);
+  --container: 1180px;
+  --radius: 14px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--et-ink);
+  background: var(--et-white);
+  line-height: 1.65;
+  font-size: 1.0625rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+  color: var(--et-ink);
+  margin: 0 0 0.5em;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); }
+h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
+
+p { margin: 0 0 1rem; }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+/* Gumbi */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn--gold {
+  background: var(--et-gold);
+  color: var(--et-ink);
+}
+.btn--gold:hover { background: var(--et-gold-dark); }
+
+.btn--ink {
+  background: var(--et-ink);
+  color: var(--et-white);
+}
+.btn--ink:hover { background: var(--et-ink-soft); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--et-ink);
+  border-color: var(--et-ink);
+}
+.btn--outline:hover { background: var(--et-ink); color: var(--et-white); }
+
+.eyebrow {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--et-gold-dark);
+  margin-bottom: 0.75rem;
+}

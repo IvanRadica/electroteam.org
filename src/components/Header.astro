@@ -1,0 +1,105 @@
+---
+const nav = [
+  { label: 'Početna', href: '#hero' },
+  { label: 'Usluge', href: '#usluge' },
+  { label: 'Kontakt', href: '#kontakt' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#hero" aria-label="Electro Team — početna">
+      <img src="/logo/et-logo-on-gold.png" alt="Electro Team logo" width="180" height="auto" />
+    </a>
+
+    <nav class="nav" aria-label="Glavna navigacija">
+      <ul>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <a class="btn btn--ink header-cta" href="#kontakt">Besplatna procjena</a>
+
+    <button class="nav-toggle" aria-label="Otvori izbornik" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--et-gold);
+    box-shadow: 0 2px 12px rgba(16, 25, 33, 0.08);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.7rem;
+  }
+  .brand img {
+    height: 42px;
+    width: auto;
+  }
+  .nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav a {
+    font-weight: 600;
+    color: var(--et-ink);
+    padding-block: 0.25rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .nav a:hover { border-color: var(--et-ink); }
+  .header-cta { white-space: nowrap; }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+  .nav-toggle span {
+    width: 26px;
+    height: 3px;
+    background: var(--et-ink);
+    border-radius: 2px;
+  }
+
+  @media (max-width: 820px) {
+    .nav, .header-cta { display: none; }
+    .nav-toggle { display: flex; }
+    .nav.open {
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--et-gold);
+      padding: 1rem 2rem 1.5rem;
+      box-shadow: 0 8px 16px rgba(16, 25, 33, 0.12);
+    }
+    .nav.open ul { flex-direction: column; gap: 1rem; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.querySelector('.nav');
+  toggle?.addEventListener('click', () => nav?.classList.toggle('open'));
+  nav?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => nav.classList.remove('open'))
+  );
+</script>

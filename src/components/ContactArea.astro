@@ -1,0 +1,91 @@
+---
+// PLACEHOLDER kontakti — zamijeniti pravim podacima
+const phone = '09X XXX XXXX';
+const phoneHref = 'tel:+385XXXXXXXXX';
+const whatsappHref = 'https://wa.me/385XXXXXXXXX';
+const hours = 'Pon–Pet 08:00 – 17:00';
+---
+
+<section class="section contact" id="kontakt">
+  <div class="container contact-grid">
+    <div class="contact-text">
+      <span class="eyebrow">Gdje radimo</span>
+      <h2>Trebate stručnu pomoć električara ili samo savjet?</h2>
+      <p>
+        Dostupni smo za elektroinstalacijske radove na području
+        <strong>Zagreba i Zagrebačke županije</strong>, kao i u okolnim gradovima.
+        Kontaktirajte nas za provjeru dostupnosti za vašu lokaciju.
+      </p>
+
+      <div class="contact-actions">
+        <a class="btn btn--ink" href={phoneHref}>
+          <span aria-hidden="true">📞</span> Nazovi: {phone}
+        </a>
+        <a class="btn btn--gold" href={whatsappHref} target="_blank" rel="noopener">
+          <span aria-hidden="true">💬</span> Pošalji WhatsApp upit
+        </a>
+        <p class="hours">Radno vrijeme: {hours}</p>
+      </div>
+    </div>
+
+    <div class="contact-map">
+      <div class="map-overlay" aria-hidden="true"></div>
+      <iframe
+        title="Područje djelovanja — Zagreb i okolica"
+        src="https://www.google.com/maps?q=Zagreb,+Hrvatska&z=10&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .contact-text p { color: var(--et-gray); max-width: 480px; }
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
+  }
+  .contact-actions .btn { min-width: 260px; }
+  .hours {
+    font-size: 0.92rem;
+    color: var(--et-gray);
+    margin: 0.25rem 0 0;
+  }
+
+  .contact-map {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 14px 32px rgba(16, 25, 33, 0.14);
+  }
+  .contact-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .map-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(255, 185, 42, 0.18);
+    mix-blend-mode: multiply;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-actions .btn { min-width: 0; width: 100%; max-width: 320px; }
+  }
+</style>

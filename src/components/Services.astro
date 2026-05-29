@@ -1,0 +1,99 @@
+---
+const services = [
+  {
+    img: '/images/usluga-ormari.jpg',
+    title: 'Zamjena strujnih ormara i osigurača',
+    text: 'Stari rastalni osigurači često su glavni uzrok kvarova i potencijalni sigurnosni rizik u vašem domu. Nudimo kompletnu i sigurnu zamjenu strujnog ormara uz ugradnju modernih automatskih osigurača i FID sklopke, čime osiguravamo vaš prostor od strujnog udara i preopterećenja.',
+    cta: 'Saznaj više',
+    href: '#kontakt',
+  },
+  {
+    img: '/images/usluga-rasvjeta.jpg',
+    title: 'Adaptacije elektroinstalacija',
+    text: 'Planirate renovaciju kuhinje ili potpunu adaptaciju stana? Naš tim izvodi precizne elektroinstalacijske radove — od razvoda nove instalacije do postavljanja utičnica i moderne LED rasvjete. Ovim zahvatima osiguravamo da vaš dom bude u potpunosti funkcionalan, siguran i energetski učinkovit.',
+    cta: 'Saznaj više',
+    href: '#kontakt',
+  },
+  {
+    img: '/images/usluga-hitne.jpg',
+    title: 'Hitne električarske intervencije',
+    text: 'Imate električni kvar koji ne može čekati? Kontaktirajte nas za provjeru dostupnosti. Ukoliko smo u prilici, u najkraćem mogućem roku izaći ćemo na teren i riješiti problem kako bi vaš dom ponovno bio siguran i funkcionalan.',
+    cta: 'Kontaktiraj nas odmah',
+    href: '#kontakt',
+  },
+];
+---
+
+<section class="section services" id="usluge">
+  <div class="container">
+    <header class="section-head">
+      <span class="eyebrow">Naše usluge</span>
+      <h2>Čime se bavimo</h2>
+    </header>
+
+    <div class="services-grid">
+      {services.map((s) => (
+        <article class="service-card">
+          <div class="service-img">
+            <img src={s.img} alt={s.title} loading="lazy" />
+          </div>
+          <div class="service-body">
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+            <a class="btn btn--outline" href={s.href}>{s.cta}</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--et-white);
+    border: 1px solid var(--et-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(16, 25, 33, 0.12);
+  }
+  .service-img {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .service-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    flex: 1;
+  }
+  .service-body p {
+    color: var(--et-gray);
+    flex: 1;
+  }
+  .service-body .btn { align-self: flex-start; margin-top: 0.5rem; }
+
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+  }
+</style>

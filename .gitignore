@@ -1,0 +1,15 @@
+# build output
+dist/
+# cloudflare wrangler local state
+.wrangler/
+# dependencies
+node_modules/
+# generated types
+.astro/
+# logs
+npm-debug.log*
+# environment
+.env
+.env.production
+# macOS
+.DS_Store
