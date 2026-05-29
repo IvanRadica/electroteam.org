@@ -1,0 +1,217 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+const { phone, phoneHref, whatsappHref, email, emailHref, hours, web3formsKey } = site;
+
+const title = 'Kontakt i besplatna procjena | Electro Team — električar Zagreb';
+const description =
+  'Zatražite besplatnu procjenu električarskih radova u Zagrebu i okolici. Nazovite, pošaljite WhatsApp upit ili ispunite formu — javljamo se u najkraćem roku.';
+---
+
+<Base title={title} description={description} path="/kontakt/">
+  <Header />
+  <main>
+    <section class="section contact-page">
+      <div class="container">
+        <header class="contact-head">
+          <span class="eyebrow">Kontakt</span>
+          <h1>Zatražite besplatnu procjenu električarskih radova</h1>
+          <p>
+            Opišite nam što planirate i gdje se nalazite — javit ćemo vam se u najkraćem
+            mogućem roku s procjenom i odgovorima na sva pitanja. Bez obveza.
+          </p>
+        </header>
+
+        <div class="contact-layout">
+          <!-- Forma -->
+          <div class="contact-form-wrap">
+            <form id="contactForm" class="contact-form">
+              <input type="hidden" name="access_key" value={web3formsKey} />
+              <input type="hidden" name="subject" value="Nova procjena s electroteam.org" />
+              <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+              <div class="field">
+                <label for="name">Ime i prezime *</label>
+                <input id="name" name="name" type="text" required autocomplete="name" />
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="phone">Telefon *</label>
+                  <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="message">Opišite radove i lokaciju *</label>
+                <textarea id="message" name="message" rows="5" required
+                  placeholder="Npr. Zamjena starog strujnog ormarića u stanu, Trešnjevka, Zagreb."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--gold form-submit">Pošalji upit</button>
+              <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <!-- Kontakt info + mapa -->
+          <aside class="contact-info">
+            <ul class="info-list">
+              <li>
+                <span class="info-icon" aria-hidden="true">📞</span>
+                <div><span class="info-label">Telefon</span><a href={phoneHref}>{phone}</a></div>
+              </li>
+              <li>
+                <span class="info-icon" aria-hidden="true">💬</span>
+                <div><span class="info-label">WhatsApp</span><a href={whatsappHref} target="_blank" rel="noopener">Pošalji upit</a></div>
+              </li>
+              <li>
+                <span class="info-icon" aria-hidden="true">✉️</span>
+                <div><span class="info-label">Email</span><a href={emailHref}>{email}</a></div>
+              </li>
+              <li>
+                <span class="info-icon" aria-hidden="true">🕗</span>
+                <div><span class="info-label">Radno vrijeme</span><span>{hours}</span></div>
+              </li>
+              <li>
+                <span class="info-icon" aria-hidden="true">📍</span>
+                <div><span class="info-label">Područje rada</span><span>Zagreb i Zagrebačka županija</span></div>
+              </li>
+            </ul>
+
+            <div class="contact-map">
+              <div class="map-overlay" aria-hidden="true"></div>
+              <iframe
+                title="Područje djelovanja — Zagreb i okolica"
+                src="https://www.google.com/maps?q=Zagreb,+Hrvatska&z=10&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .contact-head { max-width: 720px; margin: 0 auto 3rem; text-align: center; }
+  .contact-head p { color: var(--et-gray); font-size: 1.1rem; }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: var(--et-white);
+    border: 1px solid var(--et-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: 0 12px 28px rgba(16, 25, 33, 0.08);
+  }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  .contact-form label { font-weight: 600; font-size: 0.95rem; }
+  .contact-form input,
+  .contact-form textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--et-border);
+    border-radius: 10px;
+    background: var(--et-offwhite);
+    color: var(--et-ink);
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--et-gold);
+    box-shadow: 0 0 0 3px rgba(255, 185, 42, 0.25);
+  }
+  .form-submit { margin-top: 0.5rem; align-self: flex-start; }
+  .form-status { margin: 0; font-weight: 600; }
+  .form-status.ok { color: #1a7f4b; }
+  .form-status.err { color: #c0392b; }
+
+  .info-list { list-style: none; margin: 0 0 2rem; padding: 0; display: flex; flex-direction: column; gap: 1.1rem; }
+  .info-list li { display: flex; gap: 0.9rem; align-items: flex-start; }
+  .info-icon { font-size: 1.25rem; line-height: 1.4; }
+  .info-label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--et-gray); font-weight: 700; }
+  .info-list a { font-weight: 600; color: var(--et-gold-dark); }
+  .info-list a:hover { text-decoration: underline; }
+
+  .contact-map {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(16, 25, 33, 0.14);
+  }
+  .contact-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .map-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(255, 185, 42, 0.18);
+    mix-blend-mode: multiply;
+  }
+
+  @media (max-width: 860px) {
+    .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 480px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  const status = document.getElementById('formStatus');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status) return;
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+    status.className = 'form-status';
+    status.textContent = 'Šaljem…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        status.className = 'form-status ok';
+        status.textContent = 'Hvala! Vaš upit je zaprimljen — javljamo se uskoro.';
+        form.reset();
+      } else {
+        status.className = 'form-status err';
+        status.textContent = 'Slanje nije uspjelo. Nazovite nas ili pokušajte ponovno.';
+      }
+    } catch {
+      status.className = 'form-status err';
+      status.textContent = 'Greška u vezi. Nazovite nas ili pokušajte ponovno.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>

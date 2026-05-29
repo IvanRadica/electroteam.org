@@ -1,0 +1,55 @@
+---
+interface Card {
+  title: string;
+  text: string;
+}
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  intro?: string;
+  cards: Card[];
+  columns?: 2 | 3;
+  background?: 'white' | 'offwhite';
+}
+const { eyebrow, heading, intro, cards, columns = 3, background = 'white' } = Astro.props;
+---
+
+<section class={`section feature-cards bg-${background}`}>
+  <div class="container">
+    <header class="fc-head">
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <h2>{heading}</h2>
+      {intro && <p class="fc-intro">{intro}</p>}
+    </header>
+    <div class={`fc-grid cols-${columns}`}>
+      {cards.map((c) => (
+        <article class="fc-card">
+          <h3>{c.title}</h3>
+          <p>{c.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .bg-offwhite { background: var(--et-offwhite); }
+  .fc-head { text-align: center; max-width: 760px; margin: 0 auto 3rem; }
+  .fc-intro { color: var(--et-gray); font-size: 1.1rem; margin-top: 0.5rem; }
+  .fc-grid { display: grid; gap: 1.75rem; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .fc-card {
+    background: var(--et-white);
+    border: 1px solid var(--et-border);
+    border-top: 3px solid var(--et-gold);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+  }
+  .fc-card h3 { margin-bottom: 0.5rem; }
+  .fc-card p { color: var(--et-gray); margin: 0; }
+
+  @media (max-width: 900px) {
+    .cols-3, .cols-2 { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+  }
+</style>

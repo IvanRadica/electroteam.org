@@ -1,0 +1,56 @@
+---
+import { site } from '../data/site';
+const { phone, phoneHref, whatsappHref } = site;
+
+interface Props {
+  heading: string;
+  text: string;
+}
+const { heading, text } = Astro.props;
+---
+
+<section class="section cta-block">
+  <div class="container cta-inner">
+    <h2>{heading}</h2>
+    <p>{text}</p>
+    <div class="cta-actions">
+      <a class="btn btn--gold" href={phoneHref}>
+        <span aria-hidden="true">📞</span> Nazovi: {phone}
+      </a>
+      <a class="btn btn--outline-light" href={whatsappHref} target="_blank" rel="noopener">
+        <span aria-hidden="true">💬</span> Pošalji WhatsApp upit
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-block {
+    background: var(--et-ink);
+    color: var(--et-white);
+    text-align: center;
+  }
+  .cta-inner { max-width: 720px; margin-inline: auto; }
+  .cta-block h2 { color: var(--et-white); }
+  .cta-block p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn--outline-light {
+    background: transparent;
+    color: var(--et-white);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .btn--outline-light:hover {
+    background: var(--et-white);
+    color: var(--et-ink);
+    border-color: var(--et-white);
+  }
+</style>

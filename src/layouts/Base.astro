@@ -4,12 +4,16 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  path?: string;
 }
 
 const {
   title = 'Electro Team — Pouzdan električar u Zagrebu i okolici',
   description = 'Električar za zamjenu strujnih ormara, elektroinstalacije i hitne intervencije na području Zagreba i Zagrebačke županije. Certificirani majstori, rad po standardima.',
+  path = '/',
 } = Astro.props;
+
+const canonical = new URL(path, 'https://electroteam.org').href;
 ---
 
 <!doctype html>
@@ -20,12 +24,14 @@ const {
     <link rel="icon" type="image/png" href="/logo/et-znak.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="hr_HR" />
+    <meta property="og:url" content={canonical} />
 
     <!-- Fontovi: Bitter (naslovi) + Hanken Grotesk (tekst) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

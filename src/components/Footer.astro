@@ -1,14 +1,12 @@
 ---
+import { site } from '../data/site';
 const year = new Date().getFullYear();
-const socials = [
-  { label: 'Facebook', href: '#' },
-  { label: 'Instagram', href: '#' },
-];
+const { socials } = site;
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <a class="footer-brand" href="#hero" aria-label="Electro Team">
+    <a class="footer-brand" href="/" aria-label="Electro Team">
       <img src="/logo/et-logo-white.png" alt="Electro Team" />
     </a>
 

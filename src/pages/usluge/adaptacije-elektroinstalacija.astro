@@ -1,0 +1,123 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import FeatureCards from '../../components/FeatureCards.astro';
+import ProcessTimeline from '../../components/ProcessTimeline.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+const title = 'Adaptacija elektroinstalacija u stanu i kući | Electro Team Zagreb';
+const description =
+  'Kompletna adaptacija elektroinstalacija u stanu ili kući u Zagrebu: razvod instalacije, postavljanje utičnica i prekidača, LED rasvjeta. Stručno i prema rokovima.';
+
+const segments = [
+  {
+    title: 'Prvi koraci',
+    text: 'Kupili ste prvi stan? Tu smo da elektroinstalacije postanu sigurna baza za vaš novi početak. Od ugradnje novih utičnica do provjere sustava — radimo kvalitetno, stručno i pouzdano.',
+  },
+  {
+    title: 'Vrhunski projekti',
+    text: 'Radite potpunu adaptaciju? Naša adaptacija stana pokriva svaki detalj, od projekta i razvoda kabela do montaže prekidača. Sve kako bi vaš dom bio funkcionalan i savršen.',
+  },
+  {
+    title: 'Investicijski projekti',
+    text: 'Vrijeme je novac? Trebate partnera koji poštuje rokove i osigurava besprijekorne elektroinstalacije za brzi najam ili prodaju. Tu smo da vaša nekretnina bude sigurna i tehnički ispravna.',
+  },
+  {
+    title: 'Osvježenje prostora',
+    text: 'Samo kuhinja ili kupaonica? I mali zahvati zaslužuju vrhunski pristup. Rješavamo vaše elektroinstalacije uredno, bilo da dodajemo utičnice ili mijenjamo raspored rasvjete.',
+  },
+];
+
+const benefits = [
+  {
+    title: 'Precizno planiranje',
+    text: 'Za vašu maksimalnu udobnost, planiramo unaprijed i pomažemo vam smjestiti utičnice i prekidače točno tamo gdje su vam potrebni.',
+  },
+  {
+    title: 'Beskompromisna sigurnost',
+    text: 'Sve instalacije izvodimo po važećim tehničkim propisima, koristeći materijale koji štite vaš dom od požara.',
+  },
+  {
+    title: 'Moderna funkcionalnost',
+    text: 'Electro Team dizajnira elektroinstalacije koje vaš prostor čine energetski učinkovitim, a boravak u njemu podižu na novu razinu udobnosti.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Razgovor i analiza',
+    text: 'Dolazimo vidjeti prostor i slušamo vaše želje. Dajemo vam konkretne savjete prilagođene vašem budžetu.',
+  },
+  {
+    title: 'Izrada plana',
+    text: 'Definiramo točne pozicije svih elemenata kako ne bi bilo iznenađenja jednom kada se postavi namještaj.',
+  },
+  {
+    title: 'Kvalitetna izvedba',
+    text: 'Pedantno izvodimo radove, poštujemo dogovor, brinemo o čistoći prostora i završavamo na vrijeme.',
+  },
+  {
+    title: 'Završno testiranje',
+    text: 'Provjeravamo ispravnost svakog kruga prije nego vam predamo prostor na korištenje, kako biste bili potpuno mirni.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Adaptacija elektroinstalacija',
+  provider: {
+    '@type': 'Electrician',
+    name: 'Electro Team',
+    areaServed: ['Zagreb', 'Zagrebačka županija'],
+  },
+  areaServed: ['Zagreb', 'Zagrebačka županija'],
+  description,
+};
+---
+
+<Base title={title} description={description} path="/usluge/adaptacije-elektroinstalacija/">
+  <Header />
+  <main>
+    <ServiceHero
+      eyebrow="Usluga"
+      title="Kompletna adaptacija elektroinstalacija u vašem stanu ili kući"
+      subtitle="Stručno, sigurno i prema dogovorenim rokovima. Pretvorite svoj prostor u siguran i moderan dom."
+      image="/images/usluga-rasvjeta.jpg"
+    />
+
+    <FeatureCards
+      eyebrow="Kome pomažemo"
+      heading="Razumijemo da je svaka adaptacija priča za sebe"
+      intro="Od uzbuđenja pri useljenju u prvi dom do zahtjevnih investicijskih projekata — Electro Team stoji na raspolaganju za svakoga od vas."
+      cards={segments}
+      columns={2}
+      background="white"
+    />
+
+    <FeatureCards
+      eyebrow="Prednosti"
+      heading="Provjerene elektroinstalacije za veću sigurnost vašeg doma"
+      intro="Adaptacijom elektroinstalacija ne mijenjate samo utičnice, već stvarate održiv sustav koji radi besprijekorno."
+      cards={benefits}
+      columns={3}
+      background="offwhite"
+    />
+
+    <ProcessTimeline
+      heading="Od dogovora do izvedbe — bez stresa i iznenađenja"
+      intro="Naš proces adaptacije je jasan i transparentan, a sastoji se od 4 koraka."
+      steps={steps}
+    />
+
+    <CtaBlock
+      heading="Trebate stručnu pomoć ili vrijedan savjet?"
+      text="Javite nam se bez obaveza. Opišite nam što planirate, a mi ćemo vam dati procjenu i odgovoriti na sva pitanja."
+    />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Base>

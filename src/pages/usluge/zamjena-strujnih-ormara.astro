@@ -1,0 +1,120 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import FeatureCards from '../../components/FeatureCards.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import ProcessTimeline from '../../components/ProcessTimeline.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+const title = 'Zamjena strujnog ormara i osigurača | Electro Team Zagreb';
+const description =
+  'Sigurna zamjena strujnog ormara i starih rastalnih osigurača u Zagrebu. Ugradnja automatskih osigurača i FID sklopke za zaštitu od požara i strujnog udara.';
+
+const benefits = [
+  {
+    title: 'Jednostavnost rukovanja',
+    text: 'Zaboravite na kupovinu rezervnih uložaka i čekanje majstora. Ako osigurač izbaci, dovoljan je jedan potez rukom da se sustav ponovno pokrene.',
+  },
+  {
+    title: 'Beskompromisna sigurnost',
+    text: 'Ugradnjom FID sklopke štitite sebe i obitelj. Ona u milisekundi prepoznaje kvar i spašava život u slučaju direktnog kontakta sa strujom.',
+  },
+  {
+    title: 'Dugotrajna pouzdanost',
+    text: 'Moderni automatski osigurači su precizniji i dugotrajniji, čime sprječavamo opasno pregrijavanje električnih instalacija u vašim zidovima.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Detaljan pregled i demontaža',
+    text: 'Pažljivo uklanjamo stare rastalne osigurače, dotrajali nosač brojila i stari strujni ormarić.',
+  },
+  {
+    title: 'Moderna instalacija',
+    text: 'Montiramo novi, prostraniji strujni ormar koji u potpunosti udovoljava današnjim sigurnosnim standardima.',
+  },
+  {
+    title: 'Precizno spajanje komponenti',
+    text: 'Instaliramo nove automatske osigurače i FID sklopku, čime osiguravamo maksimalnu zaštitu vašeg doma.',
+  },
+  {
+    title: 'Sigurnosno testiranje',
+    text: 'Vraćamo strujno brojilo na novi nosač i provjeravamo ispravnost cijelog sustava kako bi sve bilo spremno za siguran rad.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Zamjena strujnog ormara i osigurača',
+  provider: {
+    '@type': 'Electrician',
+    name: 'Electro Team',
+    areaServed: ['Zagreb', 'Zagrebačka županija'],
+  },
+  areaServed: ['Zagreb', 'Zagrebačka županija'],
+  description,
+};
+---
+
+<Base title={title} description={description} path="/usluge/zamjena-strujnih-ormara/">
+  <Header />
+  <main>
+    <ServiceHero
+      eyebrow="Usluga"
+      title="Sigurna zamjena strujnog ormara i starih osigurača"
+      subtitle="Zaštitite svoj dom od rizika požara i strujnog udara. Ugradnjom moderne FID sklopke i automatskih osigurača osiguravamo vrhunsku sigurnost vaših električnih instalacija."
+      image="/images/hero-strujni-ormar.jpg"
+    />
+
+    <section class="section problem">
+      <div class="container problem-inner">
+        <h2>Imate stare rastalne osigurače i ne osjećate se sigurno?</h2>
+        <p>
+          Mnogi stanovi u starijim zgradama (građenim prije 70-ih) još uvijek koriste
+          stare rastalne osigurače. Oni su često preopterećeni, ne reagiraju dovoljno brzo
+          na kvarove, a u slučaju da pregore, traže zamjenu uloška. Ako i vaš ormarić
+          pripada nekom prošlom stoljeću, vrijeme je za nova, praktičnija i sigurnija rješenja.
+        </p>
+      </div>
+    </section>
+
+    <FeatureCards
+      eyebrow="Prednosti"
+      heading="Provjerena sigurnost u vašem domu"
+      intro="Zamjenom starog ormara ne dobivate samo novi izgled, već puno više."
+      cards={benefits}
+      columns={3}
+      background="offwhite"
+    />
+
+    <BeforeAfter
+      heading="Stari ormarić, novi standard sigurnosti"
+      text="Primjer zamjene dotrajalog ormarića s rastalnim osiguračima modernim ormarom s automatskim osiguračima i FID sklopkom."
+      beforeImg="/images/prije.jpg"
+      afterImg="/images/poslije.jpg"
+    />
+
+    <ProcessTimeline
+      heading="Profesionalna zamjena ormara, bez stresa"
+      intro="Naš proces je temeljit i precizan, a sastoji se od 4 koraka."
+      steps={steps}
+    />
+
+    <CtaBlock
+      heading="Dobar električar je samo jedan klik udaljen"
+      text="Živite u starijoj zgradi i niste sigurni u stanje svojih instalacija? Javite nam se za besplatnu procjenu zamjene ormarića. Ne čekajte kvar — budite korak ispred."
+    />
+  </main>
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Base>
+
+<style>
+  .problem-inner { max-width: 760px; margin-inline: auto; text-align: center; }
+  .problem-inner p { color: var(--et-gray); font-size: 1.15rem; }
+</style>

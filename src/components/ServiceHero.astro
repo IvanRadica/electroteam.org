@@ -1,0 +1,57 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  image: string;
+}
+const { eyebrow, title, subtitle, image } = Astro.props;
+---
+
+<section class="service-hero">
+  <div class="service-hero-bg" style={`background-image: url('${image}')`} aria-hidden="true"></div>
+  <div class="container service-hero-inner">
+    <span class="eyebrow eyebrow--gold">{eyebrow}</span>
+    <h1>{title}</h1>
+    <p class="service-hero-sub">{subtitle}</p>
+    <a class="btn btn--gold" href="/kontakt/">Zatraži besplatnu procjenu</a>
+  </div>
+</section>
+
+<style>
+  .service-hero {
+    position: relative;
+    color: var(--et-white);
+    overflow: hidden;
+  }
+  .service-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .service-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba(16, 25, 33, 0.94) 0%,
+      rgba(16, 25, 33, 0.8) 50%,
+      rgba(16, 25, 33, 0.55) 100%
+    );
+  }
+  .service-hero-inner {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(3.5rem, 9vw, 6.5rem);
+    max-width: 720px;
+  }
+  .service-hero h1 { color: var(--et-white); margin-bottom: 1rem; }
+  .eyebrow--gold { color: var(--et-gold); }
+  .service-hero-sub {
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+  }
+</style>
