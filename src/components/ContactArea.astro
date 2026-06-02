@@ -10,7 +10,8 @@ const { phone, phoneHref, whatsappHref, hours } = site;
       <h2>Trebate stručnu pomoć električara ili samo savjet?</h2>
       <p>
         Dostupni smo za elektroinstalacijske radove na području
-        <strong>Zagreba i Zagrebačke županije</strong>, kao i u okolnim gradovima.
+        <strong>Zagreba i Zagrebačke županije</strong>, kao i u
+        <a href="#podrucja">okolnim gradovima</a>.
         Kontaktirajte nas za provjeru dostupnosti za vašu lokaciju.
       </p>
 
@@ -45,6 +46,14 @@ const { phone, phoneHref, whatsappHref, hours } = site;
     align-items: center;
   }
   .contact-text p { color: var(--et-gray); max-width: 480px; }
+  .contact-text p a {
+    color: var(--et-ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--et-gold);
+    text-underline-offset: 3px;
+  }
+  .contact-text p a:hover { text-decoration-color: var(--et-ink); }
   .contact-actions {
     display: flex;
     flex-direction: column;

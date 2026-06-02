@@ -1,0 +1,56 @@
+---
+// NAPOMENA: popis gradova je primjer — potvrditi s klijentom gdje najčešće radi.
+const areas = [
+  'Zagreb',
+  'Samobor',
+  'Velika Gorica',
+  'Zaprešić',
+  'Sesvete',
+  'Dugo Selo',
+  'Sveta Nedelja',
+  'Sisak',
+  'Petrinja',
+];
+---
+
+<section class="section areas" id="podrucja">
+  <div class="container">
+    <header class="areas-head">
+      <span class="eyebrow">Gdje radimo</span>
+      <h2>Područja u kojima najčešće radimo</h2>
+      <p>
+        Pokrivamo Zagreb i Zagrebačku županiju te okolne gradove. Niste sigurni
+        radimo li na vašoj lokaciji? Samo nas kontaktirajte za provjeru.
+      </p>
+    </header>
+
+    <ul class="areas-list">
+      {areas.map((a) => <li><span aria-hidden="true">📍</span> {a}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .areas { background: var(--et-offwhite); }
+  .areas-head { text-align: center; max-width: 680px; margin: 0 auto 2.5rem; }
+  .areas-head p { color: var(--et-gray); }
+  .areas-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .areas-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--et-white);
+    border: 1px solid var(--et-border);
+    border-radius: 999px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+  }
+</style>

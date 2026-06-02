@@ -5,10 +5,11 @@ export const site = {
   name: 'Electro Team',
   url: 'https://electroteam.org',
 
-  // Kontakt — PLACEHOLDER
-  phone: '09X XXX XXXX',
-  phoneHref: 'tel:+385XXXXXXXXX',
-  whatsappHref: 'https://wa.me/385XXXXXXXXX',
+  // Kontakt
+  phone: '092 5034 991',
+  phoneHref: 'tel:+385925034991',
+  whatsappHref: 'https://wa.me/385925034991',
+  // Email — PLACEHOLDER (zamijeniti pravim)
   email: 'info@electroteam.org',
   emailHref: 'mailto:info@electroteam.org',
 

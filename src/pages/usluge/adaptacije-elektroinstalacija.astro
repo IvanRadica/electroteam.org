@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import FeatureCards from '../../components/FeatureCards.astro';
+import ChecklistColumns from '../../components/ChecklistColumns.astro';
 import ProcessTimeline from '../../components/ProcessTimeline.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
 
@@ -42,6 +43,33 @@ const benefits = [
   {
     title: 'Moderna funkcionalnost',
     text: 'Electro Team dizajnira elektroinstalacije koje vaš prostor čine energetski učinkovitim, a boravak u njemu podižu na novu razinu udobnosti.',
+  },
+];
+
+const serviceColumns = [
+  {
+    title: 'Temeljni elektro radovi',
+    items: [
+      { name: 'Adaptacije', desc: 'Potpuna obnova i modernizacija instalacija.' },
+      { name: 'Novogradnja', desc: 'Projektiranje i izvođenje elektroinstalacija od temelja.' },
+      { name: 'Izmjena strujnih ormara', desc: 'Modernizacija sigurnosnih sustava i ugradnja FID sklopki.' },
+    ],
+  },
+  {
+    title: 'Sigurnost i komunikacija',
+    items: [
+      { name: 'Video nadzor', desc: 'Nadzor prostora za maksimalnu sigurnost.' },
+      { name: 'Portafonske instalacije', desc: 'Kontrola pristupa i komunikacija.' },
+      { name: 'Mrežne instalacije', desc: 'Stabilan internet i lokalna povezanost.' },
+    ],
+  },
+  {
+    title: 'Dodatne specijalizirane usluge',
+    items: [
+      { name: 'Antenski sustavi', desc: 'Besprijekoran prijem TV signala.' },
+      { name: 'Gromobranske instalacije', desc: 'Zaštita od atmosferskih pražnjenja.' },
+      { name: 'Sitni kućni popravci', desc: 'Brza podrška za sve ostale kvarove.' },
+    ],
   },
 ];
 
@@ -95,6 +123,13 @@ const schema = {
       cards={segments}
       columns={2}
       background="white"
+    />
+
+    <ChecklistColumns
+      eyebrow="Opseg radova"
+      heading="Što sve obuhvaća naša adaptacija?"
+      intro="Kako bi vaš dom bio u potpunosti siguran i funkcionalan, izvodimo sve potrebne elektroinstalacijske radove:"
+      columns={serviceColumns}
     />
 
     <FeatureCards
