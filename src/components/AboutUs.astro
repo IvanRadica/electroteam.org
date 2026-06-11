@@ -1,0 +1,233 @@
+---
+import { site } from '../data/site';
+const { phone, phoneHref } = site;
+
+const lead = '/images/o-nama/o-nama-1.jpg';
+const gallery = [
+  '/images/o-nama/o-nama-1.jpg',
+  '/images/o-nama/o-nama-2.jpg',
+  '/images/o-nama/o-nama-3.jpg',
+  '/images/o-nama/o-nama-4.jpg',
+  '/images/o-nama/o-nama-5.jpg',
+  '/images/o-nama/o-nama-6.jpg',
+  '/images/o-nama/o-nama-7.jpg',
+];
+---
+
+<section class="section about" id="o-nama">
+  <div class="container about-grid">
+    <button
+      class="about-media"
+      type="button"
+      data-gallery-open
+      data-index="0"
+      aria-label="Prikaži više fotografija tima"
+    >
+      <img
+        src={lead}
+        alt="Electro Team — tim električara na terenu"
+        loading="lazy"
+        width="800"
+        height="600"
+      />
+      <span class="media-overlay" aria-hidden="true">Prikaži više</span>
+    </button>
+
+    <div class="about-text">
+      <span class="eyebrow">O nama</span>
+      <h2>Tražiš odgovorne i pouzdane električare koji poštuju rokove?</h2>
+
+      <p>
+        Mi smo <strong>Electro Team</strong> ⚡ — mladi i stručni električari koji
+        vole svoj posao i kojima je najvažnije da svaki klijent bude zadovoljan,
+        a svaki projekt profesionalno izveden.
+      </p>
+      <p>
+        Vjerujemo da kvalitetna suradnja ne završava završetkom posla. Zato nam je
+        cilj izgraditi dugoročan odnos s klijentima kako bi se u svakoj situaciji
+        mogli osloniti na nas.
+      </p>
+      <p>
+        Tijekom godina rada na brojnim projektima i u različitim tvrtkama uočili
+        smo mnoga područja u pružanju elektroinstalaterskih usluga koja se mogu
+        unaprijediti. Stoga, vođeni željom da klijentima ponudimo profesionalnu,
+        pouzdanu i kvalitetnu uslugu, odlučili smo pokrenuti vlastitu tvrtku.
+      </p>
+      <p>
+        Za informacije, ponude ili stručan savjet slobodno nas kontaktiraj. Možda
+        upravo Electro Team postane tvoj budući poslovni partner.
+      </p>
+
+      <a class="btn btn--gold about-cta" href={phoneHref}>
+        <span aria-hidden="true">📞</span> Nazovi: {phone}
+      </a>
+    </div>
+  </div>
+
+  <dialog class="gallery-lightbox" id="about-lightbox">
+    <button class="lightbox-close" type="button" data-gallery-close aria-label="Zatvori galeriju">✕</button>
+    <button class="lightbox-nav lightbox-prev" type="button" data-gallery-prev aria-label="Prethodna fotografija">‹</button>
+    <figure>
+      <img src={gallery[0]} alt="Electro Team — fotografije tima" id="lightbox-img" width="1200" height="900" />
+      <figcaption><span id="lightbox-counter">1 / {gallery.length}</span></figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" type="button" data-gallery-next aria-label="Sljedeća fotografija">›</button>
+  </dialog>
+</section>
+
+<script define:vars={{ gallery }}>
+  const dialog = document.getElementById('about-lightbox');
+  const img = document.getElementById('lightbox-img');
+  const counter = document.getElementById('lightbox-counter');
+  let current = 0;
+
+  function show(i) {
+    current = (i + gallery.length) % gallery.length;
+    img.src = gallery[current];
+    counter.textContent = `${current + 1} / ${gallery.length}`;
+  }
+
+  document.querySelectorAll('[data-gallery-open]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      show(Number(btn.dataset.index || 0));
+      dialog.showModal();
+    });
+  });
+  dialog.querySelector('[data-gallery-close]').addEventListener('click', () => dialog.close());
+  dialog.querySelector('[data-gallery-prev]').addEventListener('click', () => show(current - 1));
+  dialog.querySelector('[data-gallery-next]').addEventListener('click', () => show(current + 1));
+
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+</script>
+
+<style>
+  .about { background: var(--et-offwhite); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  .about-media {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(16, 25, 33, 0.16);
+  }
+  .media-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(16, 25, 33, 0.45);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .about-media:hover .media-overlay,
+  .about-media:focus-visible .media-overlay { opacity: 1; }
+  .about-media::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--et-gold);
+  }
+  .about-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .about-text h2 { margin-top: 0.4rem; }
+  .about-text p { color: var(--et-gray); max-width: 560px; }
+  .about-text p + p { margin-top: 0.9rem; }
+  .about-text strong { color: var(--et-ink); }
+  .about-cta { margin-top: 1.75rem; }
+
+  /* Lightbox */
+  .gallery-lightbox {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    max-width: min(92vw, 1100px);
+    max-height: 90vh;
+    overflow: visible;
+  }
+  .gallery-lightbox::backdrop {
+    background: rgba(16, 25, 33, 0.88);
+  }
+  .gallery-lightbox figure { margin: 0; }
+  .gallery-lightbox img {
+    display: block;
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: var(--radius);
+  }
+  .gallery-lightbox figcaption {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+  .lightbox-close,
+  .lightbox-nav {
+    position: fixed;
+    border: 0;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s ease;
+    z-index: 1;
+  }
+  .lightbox-close:hover,
+  .lightbox-nav:hover { background: var(--et-gold); color: var(--et-ink); }
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+  .lightbox-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    font-size: 2rem;
+    line-height: 1;
+    padding-bottom: 4px;
+  }
+  .lightbox-prev { left: 1rem; }
+  .lightbox-next { right: 1rem; }
+
+  @media (max-width: 860px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+    .about-media { max-width: 480px; }
+    .about-cta { width: 100%; max-width: 340px; }
+    .lightbox-nav { width: 42px; height: 42px; font-size: 1.5rem; }
+  }
+</style>
